@@ -111,7 +111,7 @@ function handleTelegramFormSubmit(event, formElement, isQuote) {
     text += `Message: ${message}`;
 
     const payload = {
-        chat_id: '6558349791', // TODO: Replace with your actual chat ID
+        chat_id: process.env.TELEGRAM_CHAT_ID,
         text: text
     };
 
@@ -120,7 +120,7 @@ function handleTelegramFormSubmit(event, formElement, isQuote) {
     btn.innerText = 'Sending...';
     btn.disabled = true;
 
-    fetch('https://api.telegram.org/bot8241975993:AAFQs25x1VFxQZDBGoytS0f4V5TzYdALhdc/sendMessage', {
+    fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
