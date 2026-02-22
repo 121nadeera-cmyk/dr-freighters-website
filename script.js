@@ -40,28 +40,34 @@ const observer = new IntersectionObserver((entries) => {
             hasInitedCounter = true;
             counters.forEach(counter => {
                 const target = +counter.getAttribute('data-target');
-                const increment = target / 50; 
-                
+                const increment = target / 50;
+
                 const updateCounter = () => {
                     const c = +counter.innerText.replace('+', '').replace('k', '000');
-                    if(c < target) {
+                    if (c < target) {
                         counter.innerText = `${Math.ceil(c + increment)}`;
                         setTimeout(updateCounter, 20);
                     } else {
                         // Restore k or + formatting if needed - keeping it simple for now
                         counter.innerText = counter.getAttribute('data-target') + '+';
                         if (counter.getAttribute('data-target').includes('k')) { // specialized handling if I added k logic
-                             // logic here if needed
+                            // logic here if needed
                         }
                     }
                 };
                 updateCounter();
             });
         }
-    }); 
+    });
 }, { threshold: 0.5 });
 
 const statsSection = document.querySelector('section.py-12'); // Select stats section
 if (statsSection) {
     observer.observe(statsSection);
+}
+
+// Update the current year in footer
+const currentYearElement = document.getElementById('current-year');
+if (currentYearElement) {
+    currentYearElement.textContent = new Date().getFullYear();
 }

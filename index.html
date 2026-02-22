@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="photos/logo-s.png">
     <title>Dr. Freighters - Global Logistics Partner</title>
     <meta name="description"
         content="Dr. Freighters provides world-class freight forwarding, air freight, sea freight, and logistics solutions. Trusted global shipping partner.">
@@ -13,6 +14,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -98,7 +102,7 @@
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="flex items-center gap-3 group">
-                <img src="logo.png" alt="Dr. Freighters" class="h-16 w-auto object-contain">
+                <img src="photos/drf-logo-2.png" alt="Dr. Freighters" class="h-16 w-auto object-contain">
             </a>
 
             <!-- Desktop Menu -->
@@ -113,13 +117,48 @@
             </div>
 
             <!-- Mobile Menu Button -->
-            <button class="md:hidden p-2 text-slate-900">
+            <button id="mobile-menu-btn"
+                class="md:hidden p-2 text-slate-900 focus:outline-none hover:bg-slate-100 rounded-lg transition-colors">
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
         </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu"
+            class="fixed inset-y-0 right-0 z-50 w-72 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center justify-between p-6 border-b border-slate-100">
+                    <span class="font-bold text-lg text-slate-900">Menu</span>
+                    <button id="close-menu-btn"
+                        class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors focus:outline-none">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <nav class="flex flex-col p-6 space-y-2">
+                    <a href="index.html"
+                        class="mobile-link block py-3 px-4 text-slate-600 font-medium hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors">Home</a>
+                    <a href="#services"
+                        class="mobile-link block py-3 px-4 text-slate-600 font-medium hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors">Services</a>
+                    <a href="about.html"
+                        class="mobile-link block py-3 px-4 text-slate-600 font-medium hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors">About</a>
+                    <a href="contact.html"
+                        class="mobile-link block py-3 px-4 text-slate-600 font-medium hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors">Contact</a>
+                    <div class="pt-4 mt-4 border-t border-slate-100">
+                        <a href="contact.html"
+                            class="mobile-link block w-full text-center py-3 bg-slate-900 text-white rounded-lg font-bold shadow-lg shadow-slate-900/20 active:scale-95 transition-transform">
+                            Request Quote
+                        </a>
+                    </div>
+                    <div class="pt-8 text-center text-xs text-slate-400">
+                        <p>Call Us: <a href="tel:+94777898757" class="text-brand-600 hover:underline">+94 77 789
+                                8757</a></p>
+                    </div>
+                </nav>
+            </div>
+        </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section Slider -->
     <section class="relative pt-20 pb-32 overflow-hidden bg-brand-50/50">
         <!-- Background Decoration -->
         <div
@@ -127,70 +166,226 @@
         </div>
         <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-200 rounded-full blur-3xl opacity-50"></div>
 
-        <div class="container mx-auto px-6 relative z-20 flex flex-col md:flex-row items-center gap-12">
-            <div class="w-full md:w-1/2 space-y-8">
+        <div class="container mx-auto px-6 relative z-20">
+            <!-- Swiper Container -->
+            <div class="swiper hero-swiper">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1: Global Logistics / Home -->
+                    <div class="swiper-slide cursor-grab active:cursor-grabbing">
+                        <div class="flex flex-col md:flex-row items-center gap-12">
+                            <div class="w-full md:w-1/2 space-y-8">
+                                <div
+                                    class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm fade-up">
+                                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Global
+                                        Logistics Experts</span>
+                                </div>
+                                <h1
+                                    class="text-5xl md:text-6xl font-bold text-slate-900 leading-[1.1] fade-up delay-100">
+                                    Moving Your Business <span class="text-brand-600">Forward</span>
+                                </h1>
+                                <p class="text-lg text-slate-500 leading-relaxed fade-up delay-200 max-w-lg">
+                                    Seamless freight forwarding services designed for modern businesses. Reliable,
+                                    transparent, and always on time.
+                                </p>
+                                <div class="flex flex-col sm:flex-row gap-4 fade-up delay-300">
+                                    <a href="#contact"
+                                        class="px-8 py-4 bg-brand-600 text-white rounded-xl font-semibold hover:bg-brand-700 transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center gap-2 group">
+                                        Start Shipping <i data-lucide="arrow-right"
+                                            class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                                    </a>
+                                    <a href="#services"
+                                        class="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-xl font-semibold hover:bg-slate-50 transition-all flex items-center justify-center">
+                                        Our Services
+                                    </a>
+                                </div>
+                                <div
+                                    class="flex items-center gap-8 pt-6 border-t border-slate-200/60 fade-up delay-300">
+                                    <div>
+                                        <div class="text-2xl font-bold text-slate-900">12k+</div>
+                                        <div class="text-xs font-semibold uppercase text-slate-400">Deliveries</div>
+                                    </div>
+                                    <div class="w-px h-8 bg-slate-200"></div>
+                                    <div>
+                                        <div class="text-2xl font-bold text-slate-900">150+</div>
+                                        <div class="text-xs font-semibold uppercase text-slate-400">Countries</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 relative fade-up delay-200">
+                                <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-900/10">
+                                    <img src="photos/container-yard-closeup-hub-station-of-water-and-la-PHYNWMA.jpg"
+                                        alt="Logistics" class="w-full h-[500px] object-cover">
+                                </div>
+                                <div
+                                    class="absolute -z-10 -bottom-10 -right-10 w-64 h-64 bg-slate-900 rounded-full opacity-5">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Air Freight -->
+                    <div class="swiper-slide cursor-grab active:cursor-grabbing">
+                        <div class="flex flex-col md:flex-row items-center gap-12">
+                            <div class="w-full md:w-1/2 space-y-8">
+                                <div
+                                    class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm fade-up">
+                                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Fast &
+                                        Secure</span>
+                                </div>
+                                <h1
+                                    class="text-5xl md:text-6xl font-bold text-slate-900 leading-[1.1] fade-up delay-100">
+                                    Premium <span class="text-brand-600">Air Freight</span> Solutions
+                                </h1>
+                                <p class="text-lg text-slate-500 leading-relaxed fade-up delay-200 max-w-lg">
+                                    Expedite your cargo with our global air transport network. We guarantee speed,
+                                    safety, and priority handling.
+                                </p>
+                                <div class="flex flex-col sm:flex-row gap-4 fade-up delay-300">
+                                    <a href="service-air.html"
+                                        class="px-8 py-4 bg-brand-600 text-white rounded-xl font-semibold hover:bg-brand-700 transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center gap-2 group">
+                                        Learn More <i data-lucide="arrow-right"
+                                            class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 relative fade-up delay-200">
+                                <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-900/10">
+                                    <img src="photos/airplane-landing-on-the-track-SVBYRCD.jpg" alt="Air Freight"
+                                        class="w-full h-[500px] object-cover">
+                                </div>
+                                <div
+                                    class="absolute -z-10 -bottom-10 -right-10 w-64 h-64 bg-slate-900 rounded-full opacity-5">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Ocean Freight -->
+                    <div class="swiper-slide cursor-grab active:cursor-grabbing">
+                        <div class="flex flex-col md:flex-row items-center gap-12">
+                            <div class="w-full md:w-1/2 space-y-8">
+                                <div
+                                    class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm fade-up">
+                                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                                    <span
+                                        class="text-xs font-bold uppercase tracking-wider text-slate-500">Cost-Effective</span>
+                                </div>
+                                <h1
+                                    class="text-5xl md:text-6xl font-bold text-slate-900 leading-[1.1] fade-up delay-100">
+                                    Reliable <span class="text-brand-600">Ocean Freight</span> Delivery
+                                </h1>
+                                <p class="text-lg text-slate-500 leading-relaxed fade-up delay-200 max-w-lg">
+                                    Flexible FCL & LCL solutions designed for large volume international shipping across
+                                    the world's major ports.
+                                </p>
+                                <div class="flex flex-col sm:flex-row gap-4 fade-up delay-300">
+                                    <a href="service-ocean.html"
+                                        class="px-8 py-4 bg-brand-600 text-white rounded-xl font-semibold hover:bg-brand-700 transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center gap-2 group">
+                                        Learn More <i data-lucide="arrow-right"
+                                            class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 relative fade-up delay-200">
+                                <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-900/10">
+                                    <img src="photos/freight-international-sea-port-with-cargo-ship-BUVC32J.jpg"
+                                        alt="Ocean Freight" class="w-full h-[500px] object-cover">
+                                </div>
+                                <div
+                                    class="absolute -z-10 -bottom-10 -right-10 w-64 h-64 bg-slate-900 rounded-full opacity-5">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4: Land Transport -->
+                    <div class="swiper-slide cursor-grab active:cursor-grabbing">
+                        <div class="flex flex-col md:flex-row items-center gap-12">
+                            <div class="w-full md:w-1/2 space-y-8">
+                                <div
+                                    class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm fade-up">
+                                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Wide
+                                        Coverage</span>
+                                </div>
+                                <h1
+                                    class="text-5xl md:text-6xl font-bold text-slate-900 leading-[1.1] fade-up delay-100">
+                                    Efficient <span class="text-brand-600">Land Transport</span>
+                                </h1>
+                                <p class="text-lg text-slate-500 leading-relaxed fade-up delay-200 max-w-lg">
+                                    Robust trucking networks connecting major hubs and providing seamless last-mile
+                                    delivery.
+                                </p>
+                                <div class="flex flex-col sm:flex-row gap-4 fade-up delay-300">
+                                    <a href="service-land.html"
+                                        class="px-8 py-4 bg-brand-600 text-white rounded-xl font-semibold hover:bg-brand-700 transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center gap-2 group">
+                                        Learn More <i data-lucide="arrow-right"
+                                            class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 relative fade-up delay-200">
+                                <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-900/10">
+                                    <img src="photos/fleet-of-trucks-with-cargo-trailers-transport-ship-Z4G37K5.jpg"
+                                        alt="Land Transport" class="w-full h-[500px] object-cover">
+                                </div>
+                                <div
+                                    class="absolute -z-10 -bottom-10 -right-10 w-64 h-64 bg-slate-900 rounded-full opacity-5">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5: Customs Brokerage / Clearing Agent -->
+                    <div class="swiper-slide cursor-grab active:cursor-grabbing">
+                        <div class="flex flex-col md:flex-row items-center gap-12">
+                            <div class="w-full md:w-1/2 space-y-8">
+                                <div
+                                    class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm fade-up">
+                                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Expert
+                                        Clearing Agents</span>
+                                </div>
+                                <h1
+                                    class="text-5xl md:text-6xl font-bold text-slate-900 leading-[1.1] fade-up delay-100">
+                                    Hassle-Free <span class="text-brand-600">Customs Brokerage</span>
+                                </h1>
+                                <p class="text-lg text-slate-500 leading-relaxed fade-up delay-200 max-w-lg">
+                                    Our expert clearing agents navigate complex regulations to ensure swift, compliant
+                                    customs processing for your cargo.
+                                </p>
+                                <div class="flex flex-col sm:flex-row gap-4 fade-up delay-300">
+                                    <a href="service-customs.html"
+                                        class="px-8 py-4 bg-brand-600 text-white rounded-xl font-semibold hover:bg-brand-700 transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center gap-2 group">
+                                        Learn More <i data-lucide="arrow-right"
+                                            class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="w-full md:w-1/2 relative fade-up delay-200">
+                                <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-900/10">
+                                    <img src="photos/f.jpg" alt="Customs Brokerage"
+                                        class="w-full h-[500px] object-cover">
+                                </div>
+                                <div
+                                    class="absolute -z-10 -bottom-10 -right-10 w-64 h-64 bg-slate-900 rounded-full opacity-5">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Swiper Pagination -->
+                <div class="swiper-pagination !bottom-[-40px]"></div>
+                <!-- Swiper Navigation Arrows -->
                 <div
-                    class="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-slate-200 shadow-sm fade-up">
-                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Global Logistics
-                        Experts</span>
+                    class="swiper-button-prev !text-brand-600 !left-0 md:!-left-8 scale-75 opacity-70 hover:opacity-100 transition-opacity">
                 </div>
-
-                <h1 class="text-5xl md:text-6xl font-bold text-slate-900 leading-[1.1] fade-up delay-100">
-                    Moving Your Business <span class="text-brand-600">Forward</span>
-                </h1>
-
-                <p class="text-lg text-slate-500 leading-relaxed fade-up delay-200 max-w-lg">
-                    Seamless freight forwarding services designed for modern businesses. Reliable, transparent, and
-                    always on time.
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-4 fade-up delay-300">
-                    <a href="#contact"
-                        class="px-8 py-4 bg-brand-600 text-white rounded-xl font-semibold hover:bg-brand-700 transition-all shadow-xl shadow-brand-500/20 flex items-center justify-center gap-2 group">
-                        Start Shipping <i data-lucide="arrow-right"
-                            class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                    </a>
-                    <a href="#services"
-                        class="px-8 py-4 bg-white text-slate-700 border border-slate-200 rounded-xl font-semibold hover:bg-slate-50 transition-all flex items-center justify-center">
-                        Our Services
-                    </a>
+                <div
+                    class="swiper-button-next !text-brand-600 !right-0 md:!-right-8 scale-75 opacity-70 hover:opacity-100 transition-opacity">
                 </div>
-
-                <div class="flex items-center gap-8 pt-6 border-t border-slate-200/60 fade-up delay-300">
-                    <div>
-                        <div class="text-2xl font-bold text-slate-900">12k+</div>
-                        <div class="text-xs font-semibold uppercase text-slate-400">Deliveries</div>
-                    </div>
-                    <div class="w-px h-8 bg-slate-200"></div>
-                    <div>
-                        <div class="text-2xl font-bold text-slate-900">150+</div>
-                        <div class="text-xs font-semibold uppercase text-slate-400">Countries</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="w-full md:w-1/2 relative fade-up delay-200">
-                <div class="relative rounded-3xl overflow-hidden shadow-2xl shadow-brand-900/10">
-                    <!-- Image Placeholder -->
-                    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80"
-                        alt="Logistics"
-                        class="w-full h-auto object-cover transform hover:scale-105 transition-transform duration-700">
-
-                    <!-- Floating Card -->
-                    <div
-                        class="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-lg flex items-center gap-4 max-w-xs border border-white/50">
-                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                            <i data-lucide="check-circle-2" class="w-5 h-5 text-green-600"></i>
-                        </div>
-                        <div>
-                            <div class="text-sm font-bold text-slate-900">Shipment Delivered</div>
-                            <div class="text-xs text-slate-500">Just now in New York, USA</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Decorative Elements -->
-                <div class="absolute -z-10 -bottom-10 -right-10 w-64 h-64 bg-slate-900 rounded-full opacity-5"></div>
             </div>
         </div>
     </section>
@@ -417,8 +612,7 @@
                     </p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
-                                alt="Avatar" class="w-full h-full object-cover">
+                            <img src="photos/02-6.jpg" alt="Avatar" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <div class="font-bold text-slate-900 text-sm">Robert Fox</div>
@@ -440,8 +634,7 @@
                     </p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
-                                alt="Avatar" class="w-full h-full object-cover">
+                            <img src="photos/03-5.jpg" alt="Avatar" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <div class="font-bold text-slate-900 text-sm">Jane Cooper</div>
@@ -462,8 +655,7 @@
                         able to call and speak to a real person who knows exactly where my cargo is."</p>
                     <div class="flex items-center gap-3">
                         <div class="w-10 h-10 bg-slate-200 rounded-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
-                                alt="Avatar" class="w-full h-full object-cover">
+                            <img src="photos/e.jpg" alt="Avatar" class="w-full h-full object-cover">
                         </div>
                         <div>
                             <div class="font-bold text-slate-900 text-sm">Wade Warren</div>
@@ -555,7 +747,7 @@
             <div class="grid md:grid-cols-4 gap-12 mb-12">
                 <div class="col-span-1 md:col-span-2">
                     <a href="#" class="flex items-center gap-3 mb-6">
-                        <img src="logo.png" alt="Dr. Freighters" class="h-14 w-auto object-contain">
+                        <img src="photos/drf-logo-2.png" alt="Dr. Freighters" class="h-14 w-auto object-contain">
                     </a>
                     <p class="text-slate-500 text-sm leading-relaxed max-w-sm">
                         Global freight forwarding solutions tailored to your business needs.
@@ -588,7 +780,7 @@
 
             <div
                 class="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
-                <div>&copy; 2024 Dr. Freighters. All rights reserved.</div>
+                <div>&copy; <span id="current-year">2024</span> Dr. Freighters. All rights reserved.</div>
                 <div class="flex gap-6">
                     <a href="#" class="hover:text-slate-600">Privacy</a>
                     <a href="#" class="hover:text-slate-600">Terms</a>
@@ -607,9 +799,33 @@
             with us</span>
     </a>
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
+
+        // Initialize Swiper
+        const swiper = new Swiper('.hero-swiper', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            effect: 'fade', // Optional: subtle fade between slides
+            fadeEffect: {
+                crossFade: true
+            }
+        });
 
         // Navbar Scroll Effect
         window.addEventListener('scroll', () => {

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="photos/logo-s.png">
     <title>Customs Brokerage - Dr. Freighters</title>
     <meta name="description"
         content="Expert customs brokerage services in Sri Lanka. Fast, compliant, and hassle-free clearance with our deep industry relationships.">
@@ -46,7 +47,7 @@
     <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-100">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="flex items-center gap-3 group">
-                <img src="logo.png" alt="Dr. Freighters" class="h-16 w-auto object-contain">
+                <img src="photos/drf-logo-2.png" alt="Dr. Freighters" class="h-16 w-auto object-contain">
             </a>
             <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
                 <a href="index.html#services" class="text-brand-600 transition-colors">Services</a>
@@ -58,16 +59,46 @@
                 </a>
             </div>
             <!-- Mobile Menu Button -->
-            <button class="md:hidden p-2 text-slate-900">
+            <button id="mobile-menu-btn"
+                class="md:hidden p-2 text-slate-900 focus:outline-none hover:bg-slate-100 rounded-lg transition-colors">
                 <i data-lucide="menu" class="w-6 h-6"></i>
             </button>
+        </div>
+
+        <!-- Mobile Menu Drawer -->
+        <div id="mobile-menu"
+            class="fixed inset-y-0 right-0 z-50 w-72 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="flex flex-col h-full">
+                <div class="flex items-center justify-between p-6 border-b border-slate-100">
+                    <span class="font-bold text-lg text-slate-900">Menu</span>
+                    <button id="close-menu-btn"
+                        class="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors focus:outline-none">
+                        <i data-lucide="x" class="w-6 h-6"></i>
+                    </button>
+                </div>
+                <nav class="flex flex-col p-6 space-y-2">
+                    <a href="index.html"
+                        class="mobile-link block py-3 px-4 text-slate-600 font-medium hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors">Home</a>
+                    <a href="index.html#services"
+                        class="mobile-link block py-3 px-4 text-slate-600 font-medium hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors">Services</a>
+                    <a href="about.html"
+                        class="mobile-link block py-3 px-4 text-slate-600 font-medium hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors">About</a>
+                    <a href="contact.html"
+                        class="mobile-link block py-3 px-4 text-slate-600 font-medium hover:text-brand-600 hover:bg-brand-50 rounded-lg transition-colors">Contact</a>
+                    <div class="pt-4 mt-4 border-t border-slate-100">
+                        <a href="contact.html"
+                            class="mobile-link block w-full text-center py-3 bg-slate-900 text-white rounded-lg font-bold shadow-lg shadow-slate-900/20 active:scale-95 transition-transform">
+                            Request Quote
+                        </a>
+                    </div>
+                </nav>
+            </div>
         </div>
     </nav>
 
     <!-- Page Header -->
     <header class="relative py-24 bg-slate-900 flex items-center justify-center overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1554224155-984bb3580553?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80"
-            alt="Customs Clearing" class="absolute inset-0 w-full h-full object-cover opacity-30">
+        <img src="photos/f.jpg" alt="Customs Clearing" class="absolute inset-0 w-full h-full object-cover opacity-30">
         <div class="relative z-10 text-center px-6">
             <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Customs Brokerage</h1>
             <p class="text-slate-300 text-lg max-w-2xl mx-auto">Seamless clearing services with unmatched expertise in
@@ -171,7 +202,7 @@
             <div class="grid md:grid-cols-4 gap-12 mb-12">
                 <div class="col-span-1 md:col-span-2">
                     <a href="index.html" class="flex items-center gap-3 mb-6">
-                        <img src="logo.png" alt="Dr. Freighters" class="h-14 w-auto object-contain">
+                        <img src="photos/drf-logo-2.png" alt="Dr. Freighters" class="h-14 w-auto object-contain">
                     </a>
                     <p class="text-slate-500 text-sm leading-relaxed max-w-sm">Global freight forwarding solutions
                         tailored to your business needs.</p>
@@ -197,7 +228,7 @@
             </div>
             <div
                 class="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
-                <div>&copy; 2024 Dr. Freighters. All rights reserved.</div>
+                <div>&copy; <span id="current-year">2024</span> Dr. Freighters. All rights reserved.</div>
             </div>
         </div>
     </footer>
@@ -211,6 +242,7 @@
             with us</span>
     </a>
 
+    <script src="script.js"></script>
     <script>
         lucide.createIcons();
     </script>
