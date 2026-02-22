@@ -15,20 +15,7 @@ mobileLinks.forEach(link => {
     link.addEventListener('click', toggleMenu);
 });
 
-// Sticky Navbar Effect
-const navbar = document.getElementById('navbar');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('bg-brand-dark/95', 'shadow-lg');
-        navbar.classList.remove('bg-brand-dark/80', 'py-4');
-        navbar.classList.add('py-2');
-    } else {
-        navbar.classList.remove('bg-brand-dark/95', 'shadow-lg');
-        navbar.classList.add('bg-brand-dark/80', 'py-4');
-        navbar.classList.remove('py-2');
-    }
-});
+// Sticky Navbar Effect (Removed as nav is already sticky without custom IDs)
 
 // Number Counter Animation
 const counters = document.querySelectorAll('.counter');
@@ -70,4 +57,65 @@ if (statsSection) {
 const currentYearElement = document.getElementById('current-year');
 if (currentYearElement) {
     currentYearElement.textContent = new Date().getFullYear();
+}
+
+// Telegram Form Submission
+function handleTelegramFormSubmit(event, formElement, isQuote) {
+    event.preventDefault();
+
+    const formData = new FormData(formElement);
+    const name = formData.get('name') || 'N/A';
+    const email = formData.get('email') || 'N/A';
+    const phone = formData.get('phone') || 'N/A';
+    const message = formData.get('message') || 'N/A';
+
+    let text = `🚢 New Dr. Freighters Lead\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n`;
+    if (isQuote) {
+        text += `Service: ${formData.get('service')}\n`;
+    } else {
+        text += `Subject: ${formData.get('subject')}\n`;
+    }
+    text += `Message: ${message}`;
+
+    const payload = {
+        chat_id: '6558349791', // TODO: Replace with your actual chat ID
+        text: text
+    };
+
+    const btn = formElement.querySelector('button[type="submit"]');
+    const originalBtnText = btn.innerText;
+    btn.innerText = 'Sending...';
+    btn.disabled = true;
+
+    fetch('https://api.telegram.org/bot8241975993:AAFQs25x1VFxQZDBGoytS0f4V5TzYdALhdc/sendMessage', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    })
+        .then(response => {
+            if (response.ok) {
+                formElement.innerHTML = `<div class="text-center p-8 bg-green-50 border border-green-200 text-green-700 rounded-xl font-bold">Thank You! Your message has been sent successfully.</div>`;
+            } else {
+                alert('Something went wrong. Please check your Chat ID configuration and try again.');
+                btn.innerText = originalBtnText;
+                btn.disabled = false;
+            }
+        })
+        .catch(error => {
+            alert('Error sending message. Please check your connection and try again.');
+            btn.innerText = originalBtnText;
+            btn.disabled = false;
+        });
+}
+
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => handleTelegramFormSubmit(e, contactForm, false));
+}
+
+const quoteForm = document.getElementById('quoteForm');
+if (quoteForm) {
+    quoteForm.addEventListener('submit', (e) => handleTelegramFormSubmit(e, quoteForm, true));
 }
