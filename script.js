@@ -59,11 +59,44 @@ if (currentYearElement) {
     currentYearElement.textContent = new Date().getFullYear();
 }
 
+const RATE_LIMIT_KEY = 'drf_contact_submissions';
+const MAX_SUBMISSIONS = 3;
+const TIME_WINDOW_MS = 60 * 60 * 1000; // 1 hour
+
+function checkRateLimit() {
+    let now = Date.now();
+    let submissions = JSON.parse(localStorage.getItem(RATE_LIMIT_KEY)) || [];
+
+    // Clean up old submissions outside the 1-hour window
+    submissions = submissions.filter(time => now - time < TIME_WINDOW_MS);
+
+    if (submissions.length >= MAX_SUBMISSIONS) {
+        return false;
+    }
+
+    submissions.push(now);
+    localStorage.setItem(RATE_LIMIT_KEY, JSON.stringify(submissions));
+    return true;
+}
+
 // Telegram Form Submission
 function handleTelegramFormSubmit(event, formElement, isQuote) {
     event.preventDefault();
 
     const formData = new FormData(formElement);
+
+    // Cloudflare Turnstile Validation (Client-side presence check)
+    const turnstileResponse = formData.get('cf-turnstile-response');
+    if (turnstileResponse !== null && !turnstileResponse) {
+        alert('Please complete the security verification before submitting.');
+        return;
+    }
+
+    // Rate Limit Validation
+    if (!checkRateLimit()) {
+        alert('You have reached the limit of 3 messages per hour. Please try again later.');
+        return;
+    }
     const name = formData.get('name') || 'N/A';
     const email = formData.get('email') || 'N/A';
     const phone = formData.get('phone') || 'N/A';
